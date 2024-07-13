@@ -7,6 +7,16 @@ import { LoginUser } from "../calls/users";
 
 function Login() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if token is present in local storage
+    if (localStorage.getItem("token")) {
+      // Navigate to home page if token is present
+      navigate("/");
+    }
+  }, [navigate]);
+
+  
   const onFinish = async (values) => {
     try {
       const response = await LoginUser(values);
